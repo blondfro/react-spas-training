@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { navigate } from "@reach/router";
+// import { navigate } from "@reach/router";
 
 function Meetings({ addMeeting }) {
   const [meetingName, setMeetingName] = useState("");

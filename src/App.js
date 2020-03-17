@@ -13,6 +13,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [displayName, setDisplayName] = useState(null);
   const [userID, setUserID] = useState(null);
+  const [meetings, setMeetings] = useState([]);
+  const [howManyMeetings, setHowManyMeetings] = useState(0);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(FBUser => {
@@ -20,14 +22,27 @@ function App() {
         setUser(FBUser.displayName);
         setDisplayName(FBUser.displayName);
         setUserID(FBUser.uid);
+
+        const meetingsRef = firebase.database().ref("meetings/" + FBUser.uid);
+
+        meetingsRef.on("value", snapshot => {
+          let meetings = snapshot.val();
+          let meetingsList = [];
+
+          for (let item in meetings) {
+            meetingsList.push({
+              meetingID: item,
+              meetingName: meetings[item].meetingName
+            });
+          }
+
+          setMeetings(meetingsList);
+          setHowManyMeetings(meetingsList.length);
+        });
+      } else {
+        setUser(null);
       }
     });
-
-    // const ref = firebase.database().ref("user");
-    // ref.on("value", snapshot => {
-    //   let FBUser = snapshot.val();
-    //   setUser(FBUser);
-    // });
   }, [user]);
 
   const registerUser = userName => {
