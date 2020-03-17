@@ -30,7 +30,13 @@ function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
           <h1 className="font-weight-light text-center">Attendees</h1>
         </div>
       </div>
-      <AttendeesList userID={userID} attendees={displayAttendees} />
+      <AttendeesList
+        userID={userID}
+        adminUser={adminUser}
+        meetingID={meetingID}
+        attendees={displayAttendees}
+        firebase={firebase}
+      />
     </div>
   );
 }
