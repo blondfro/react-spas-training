@@ -2,11 +2,17 @@ import React from 'react';
 
 class Home extends React.Component {
     render() {
+        const biggerLead= {
+          fontSize: 1.4 + 'em',
+          fontWeight: 200
+        };
+
         return (
             <div className="container text-center">
                 <div className="row justify-content-center">
                     <div className="col-10 col-md-10 col-lg-8 col-xl-7">
-                        <div className="display-4 text-primary mt-3 mb-2">
+                        <div className="display-4 text-primary mt-3 mb-2"
+                            style={{biggerLead}}>
                             Meeting Log
                         </div>
                         <p className="lead">
