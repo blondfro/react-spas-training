@@ -1,15 +1,10 @@
-import React from 'react';
+import React, { useState } from "react";
 import Home from "./components/Home";
 
-
-
-
 function App() {
-  return (
-      <Home />
-  );
+  const [user, setUser] = useState("Ray");
+
+  return <Home user={user} />;
 }
 
 export default App;
-
-
