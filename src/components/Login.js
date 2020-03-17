@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import FormError from "./FormError";
 import { navigate } from "@reach/router";
 
-function Login({ firebase, registerUser }) {
+function Login({ firebase }) {
   const [email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState(null);
 
   const handleChange = event => {
@@ -15,7 +15,7 @@ function Login({ firebase, registerUser }) {
         setEmail(itemValue);
         break;
       case "password":
-        setpassword(itemValue);
+        setPassword(itemValue);
         break;
       default:
         break;
