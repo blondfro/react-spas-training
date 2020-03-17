@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import { FaUsers } from "react-icons/all";
 
-function Navigation({ user, ...props }) {
+function Navigation({ user, logoutUser, ...props }) {
   return (
     <nav className="site-nav family-sans navbar navbar-expand bg-primary navbar-dark higher">
       <div className="container-fluid">
@@ -11,22 +11,26 @@ function Navigation({ user, ...props }) {
         </Link>
         <div className="navbar-nav ml-auto">
           {user && (
-            <Link className="nav-item nav-link" to="/meetings">
+            <Link to="/meetings" className="nav-item nav-link">
               meetings
             </Link>
           )}
           {!user && (
-            <Link className="nav-item nav-link" to="/login">
+            <Link to="/login" className="nav-item nav-link">
               log in
             </Link>
           )}
           {!user && (
-            <Link className="nav-item nav-link" to="/register">
+            <Link to="/register" className="nav-item nav-link">
               register
             </Link>
           )}
           {user && (
-            <Link className="nav-item nav-link" to="/login">
+            <Link
+              to="/login"
+              className="nav-item nav-link"
+              onClick={e => logoutUser(e)}
+            >
               log out
             </Link>
           )}
