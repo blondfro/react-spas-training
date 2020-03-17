@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import Home from "./components/Home";
+import Welcome from "./components/Welcome";
 
 function App() {
   const [user, setUser] = useState("Ray");
 
-  return <Home user={user} />;
+  return (
+    <div>
+      {user && <Welcome user={user} />}
+      <Home user={user} />
+    </div>
+  );
 }
 
 export default App;
