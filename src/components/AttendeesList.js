@@ -1,5 +1,5 @@
 import React from "react";
-import { GoStar, GoTrashcan } from "react-icons/all";
+import { GoStar, GoTrashcan, GoMail } from "react-icons/all";
 import { navigate } from "@reach/router";
 
 function AttendeesList({ userID, adminUser, meetingID, attendees, firebase }) {
@@ -56,6 +56,13 @@ function AttendeesList({ userID, adminUser, meetingID, attendees, firebase }) {
                   >
                     <GoStar />
                   </button>
+                  <a
+                    href={`mailto:${attendee.attendeeEmail}`}
+                    className="btn btn-sm btn-outline-secondary"
+                    title="Mail Attendee"
+                  >
+                    <GoMail />
+                  </a>
                   <button
                     className="btn btn-sm btn-outline-secondary"
                     title="Delete Attendee"
