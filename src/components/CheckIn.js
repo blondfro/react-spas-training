@@ -12,7 +12,8 @@ function CheckIn({ userID, meetingID, firebase, ...props }) {
       .ref(`meetings/${userID}/${meetingID}/attendees`);
     ref.push({
       attendeeName: userName,
-      attendeeEmail: email
+      attendeeEmail: email,
+      star: false
     });
     navigate(`/attendees/${userID}/${meetingID}`);
   };

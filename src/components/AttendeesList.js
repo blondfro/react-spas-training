@@ -1,5 +1,5 @@
 import React from "react";
-import { FaLink, GoListOrdered, GoTrashcan } from "react-icons/all";
+import { GoStar, GoTrashcan } from "react-icons/all";
 import { navigate } from "@reach/router";
 
 function AttendeesList({ userID, adminUser, meetingID, attendees, firebase }) {
@@ -11,6 +11,16 @@ function AttendeesList({ userID, adminUser, meetingID, attendees, firebase }) {
       .database()
       .ref(`meetings/${adminUser}/${meeting}/attendees/${attendee}`);
     ref.remove();
+  };
+
+  const toggleStar = (event, star, meeting, attendee) => {
+    event.preventDefault();
+    const ref = firebase
+      .database()
+      .ref(`meetings/${adminUser}/${meeting}/attendees/${attendee}/star`);
+    if (star === undefined) {
+      ref.set(true);
+    } else ref.set(!star);
   };
 
   return (
@@ -29,6 +39,23 @@ function AttendeesList({ userID, adminUser, meetingID, attendees, firebase }) {
             >
               {admin && (
                 <div className="btn-group pr-2">
+                  <button
+                    className={
+                      "btn btn-sm" +
+                      (attendee.star ? "btn-info" : "btn-outline-secondary")
+                    }
+                    title="Add Star"
+                    onClick={e =>
+                      toggleStar(
+                        e,
+                        attendee.star,
+                        meetingID,
+                        attendee.attendeeID
+                      )
+                    }
+                  >
+                    <GoStar />
+                  </button>
                   <button
                     className="btn btn-sm btn-outline-secondary"
                     title="Delete Attendee"

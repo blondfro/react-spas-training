@@ -16,7 +16,8 @@ function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
         attendeesList.push({
           attendeeID: attendee,
           attendeeName: attendees[attendee].attendeeName,
-          attendeeEmail: attendees[attendee].attendeeEmail
+          attendeeEmail: attendees[attendee].attendeeEmail,
+          star: attendees[attendee].star
         });
       }
       setDisplayAttendees(attendeesList);
