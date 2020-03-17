@@ -67,7 +67,7 @@ function App() {
       {user && <Welcome userName={displayName} logoutUser={logoutUser} />}
       <Router>
         <Home path="/" user={displayName} />
-        <Login path="/login" />
+        <Login path="/login" firebase={firebase} registerUser={registerUser} />
         <Meetings path="/meetings" />
         <Register
           path="/register"
