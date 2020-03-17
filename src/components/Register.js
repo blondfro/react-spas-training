@@ -10,7 +10,6 @@ function Register() {
 
   useEffect(() => {
     passwordCheck();
-    console.log(passOne + " = " + passTwo);
   }, [passOne, passTwo]);
 
   const handleChange = event => {
