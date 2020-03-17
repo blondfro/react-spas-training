@@ -22,7 +22,7 @@ function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
       }
       setDisplayAttendees(attendeesList);
     });
-  });
+  }, []);
 
   return (
     <div className="container mt-4">

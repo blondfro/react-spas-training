@@ -41,7 +41,7 @@ function AttendeesList({ userID, adminUser, meetingID, attendees, firebase }) {
                 <div className="btn-group pr-2">
                   <button
                     className={
-                      "btn btn-sm" +
+                      "btn btn-sm " +
                       (attendee.star ? "btn-info" : "btn-outline-secondary")
                     }
                     title="Add Star"

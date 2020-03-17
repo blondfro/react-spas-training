@@ -45,7 +45,7 @@ function App() {
         setUser(null);
       }
     });
-  }, [user]);
+  }, []);
 
   const registerUser = userName => {
     firebase.auth().onAuthStateChanged(FBUser => {
