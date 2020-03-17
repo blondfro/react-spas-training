@@ -1,5 +1,6 @@
 import React from "react";
-import { GoTrashcan } from "react-icons/all";
+import { GoTrashcan, FaLink } from "react-icons/all";
+import { navigate } from "@reach/router";
 
 function MeetingList({ meetings, userID, firebase }) {
   const deleteMeeting = (event, meeting) => {
@@ -27,18 +28,19 @@ function MeetingList({ meetings, userID, firebase }) {
             >
               <GoTrashcan />
             </button>
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              title="Checkin"
+              onClick={() => {
+                navigate(`/checkin/${userID}/${meeting.meetingID}`);
+              }}
+            >
+              <FaLink />
+            </button>
           </section>
 
           <section className="pl-3 text-left align-self-center">
             {meeting.meetingName}
-          </section>
-
-          <section
-            className="btn-group align-self-center"
-            role="group"
-            aria-label=""
-          >
-            delete
           </section>
         </div>
       ))}

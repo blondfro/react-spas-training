@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Meetings from "./components/Meetings";
 import Register from "./components/Register";
+import CheckIn from "./components/CheckIn";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -102,6 +103,7 @@ function App() {
           firebase={firebase}
           registerUser={registerUser}
         />
+        <CheckIn path="/checkin/:userID/:meetingID" firebase={firebase} />
       </Router>
     </div>
   );
