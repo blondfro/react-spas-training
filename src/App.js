@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Meetings from "./components/Meetings";
 import Register from "./components/Register";
 import CheckIn from "./components/CheckIn";
+import Attendees from "./components/Attendees";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -104,6 +105,11 @@ function App() {
           registerUser={registerUser}
         />
         <CheckIn path="/checkin/:userID/:meetingID" firebase={firebase} />
+        <Attendees
+          path="/attendees/:userID/:meetingID"
+          adminUser={userID}
+          firebase={firebase}
+        />
       </Router>
     </div>
   );

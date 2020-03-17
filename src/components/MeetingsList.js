@@ -1,5 +1,5 @@
 import React from "react";
-import { GoTrashcan, FaLink } from "react-icons/all";
+import { GoTrashcan, FaLink, FaUsers, GoListOrdered } from "react-icons/all";
 import { navigate } from "@reach/router";
 
 function MeetingList({ meetings, userID, firebase }) {
@@ -36,6 +36,15 @@ function MeetingList({ meetings, userID, firebase }) {
               }}
             >
               <FaLink />
+            </button>
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              title="Attendees List"
+              onClick={() => {
+                navigate(`/attendees/${userID}/${meeting.meetingID}`);
+              }}
+            >
+              <GoListOrdered />
             </button>
           </section>
 
