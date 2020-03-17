@@ -1,26 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import FormError from "./FormError";
 
 function Register() {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [passOne, setPassOne] = useState("");
   const [passTwo, setPassTwo] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    passwordCheck();
+    console.log(passOne + " = " + passTwo);
+  }, [passOne, passTwo]);
 
   const handleChange = event => {
     const itemName = event.target.name;
     const itemValue = event.target.value;
     switch (itemName) {
       case "displayName":
-        return setDisplayName(itemValue);
+        setDisplayName(itemValue);
+        break;
       case "email":
-        return setEmail(itemValue);
+        setEmail(itemValue);
+        break;
       case "passOne":
-        return setPassOne(itemValue);
+        setPassOne(itemValue);
+        break;
       case "passTwo":
-        return setPassTwo(itemValue);
+        setPassTwo(itemValue);
+        break;
       default:
         break;
     }
+  };
+
+  const passwordCheck = () => {
+    if (passOne !== passTwo) {
+      setErrorMsg("Passwords do not match");
+    } else setErrorMsg(null);
   };
 
   return (
@@ -32,6 +49,9 @@ function Register() {
               <div className="card-body">
                 <h3 className="font-weight-light mb-3">Register</h3>
                 <div className="form-row">
+                  {errorMsg !== null ? (
+                    <FormError errMessage={errorMsg} />
+                  ) : null}
                   <section className="col-sm-12 form-group">
                     <label
                       className="form-control-label sr-only"
