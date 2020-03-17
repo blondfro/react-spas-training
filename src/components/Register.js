@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FormError from "./FormError";
 
-function Register() {
+function Register({ firebase }) {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [passOne, setPassOne] = useState("");
@@ -33,6 +33,24 @@ function Register() {
     }
   };
 
+  const handleSubmit = event => {
+    const registrationInfo = {
+      displayName,
+      email,
+      password: passOne
+    };
+    event.preventDefault();
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(
+        registrationInfo.email,
+        registrationInfo.password
+      )
+      .catch(error => {
+        error !== null ? setErrorMsg(error.message) : setErrorMsg(null);
+      });
+  };
+
   const passwordCheck = () => {
     if (passOne !== passTwo) {
       setErrorMsg("Passwords do not match");
@@ -40,7 +58,7 @@ function Register() {
   };
 
   return (
-    <form className="mt-3">
+    <form className="mt-3" onSubmit={handleSubmit}>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8">

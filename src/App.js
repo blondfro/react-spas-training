@@ -28,7 +28,7 @@ function App() {
         <Home path="/" user={user} />
         <Login path="/login" />
         <Meetings path="/meetings" />
-        <Register path="/register" />
+        <Register path="/register" firebase={firebase} />
       </Router>
     </div>
   );
