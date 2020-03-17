@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import MeetingList from "./MeetingsList";
 // import { navigate } from "@reach/router";
 
-function Meetings({ addMeeting }) {
+function Meetings({ addMeeting, meetings }) {
   const [meetingName, setMeetingName] = useState("");
 
   const handleSubmit = event => {
@@ -40,6 +41,22 @@ function Meetings({ addMeeting }) {
                 </div>
               </form>
             </div>
+          </div>
+        </div>
+        <div className="col-11 col-md-6 text-center">
+          <div className="card border-top-0 rounded-0">
+            {meetings && meetings.length ? (
+              <div className="card-body py-2">
+                <h4 className="card-title font-weight-light m-0">
+                  Your Meetings
+                </h4>
+              </div>
+            ) : null}
+            {meetings && (
+              <div className="list-group list-group-flush">
+                <MeetingList meetings={meetings} />
+              </div>
+            )}
           </div>
         </div>
       </div>

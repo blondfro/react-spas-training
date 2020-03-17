@@ -90,7 +90,11 @@ function App() {
       <Router>
         <Home path="/" user={displayName} />
         <Login path="/login" firebase={firebase} registerUser={registerUser} />
-        <Meetings path="/meetings" addMeeting={addMeeting} />
+        <Meetings
+          path="/meetings"
+          addMeeting={addMeeting}
+          meetings={meetings}
+        />
         <Register
           path="/register"
           firebase={firebase}
