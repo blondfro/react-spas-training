@@ -94,6 +94,8 @@ function App() {
           path="/meetings"
           addMeeting={addMeeting}
           meetings={meetings}
+          userID={userID}
+          firebase={firebase}
         />
         <Register
           path="/register"

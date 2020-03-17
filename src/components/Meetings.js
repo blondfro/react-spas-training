@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MeetingList from "./MeetingsList";
 // import { navigate } from "@reach/router";
 
-function Meetings({ addMeeting, meetings }) {
+function Meetings({ addMeeting, meetings, userID, firebase }) {
   const [meetingName, setMeetingName] = useState("");
 
   const handleSubmit = event => {
@@ -54,7 +54,11 @@ function Meetings({ addMeeting, meetings }) {
             ) : null}
             {meetings && (
               <div className="list-group list-group-flush">
-                <MeetingList meetings={meetings} />
+                <MeetingList
+                  meetings={meetings}
+                  userID={userID}
+                  firebase={firebase}
+                />
               </div>
             )}
           </div>
