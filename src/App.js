@@ -15,11 +15,19 @@ function App() {
   const [userID, setUserID] = useState(null);
 
   useEffect(() => {
-    const ref = firebase.database().ref("user");
-    ref.on("value", snapshot => {
-      let FBUser = snapshot.val();
-      setUser(FBUser);
+    firebase.auth().onAuthStateChanged(FBUser => {
+      if (FBUser) {
+        setUser(FBUser.displayName);
+        setDisplayName(FBUser.displayName);
+        setUserID(FBUser.uid);
+      }
     });
+
+    // const ref = firebase.database().ref("user");
+    // ref.on("value", snapshot => {
+    //   let FBUser = snapshot.val();
+    //   setUser(FBUser);
+    // });
   }, [user]);
 
   const registerUser = userName => {
@@ -42,7 +50,7 @@ function App() {
   return (
     <div>
       <Navigation user={user} />
-      {user && <Welcome user={user} />}
+      {user && <Welcome userName={displayName} />}
       <Router>
         <Home path="/" user={displayName} />
         <Login path="/login" />
