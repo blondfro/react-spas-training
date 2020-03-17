@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FormError from "./FormError";
 
-function Register({ firebase }) {
+function Register({ firebase, registerUser }) {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [passOne, setPassOne] = useState("");
@@ -35,8 +35,8 @@ function Register({ firebase }) {
 
   const handleSubmit = event => {
     const registrationInfo = {
-      displayName,
-      email,
+      displayName: displayName,
+      email: email,
       password: passOne
     };
     event.preventDefault();
@@ -46,6 +46,9 @@ function Register({ firebase }) {
         registrationInfo.email,
         registrationInfo.password
       )
+      .then(() => {
+        registerUser(registrationInfo.displayName);
+      })
       .catch(error => {
         error !== null ? setErrorMsg(error.message) : setErrorMsg(null);
       });

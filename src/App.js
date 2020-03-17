@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Router } from "@reach/router";
+import { navigate, Router } from "@reach/router";
 import firebase from "./components/Firebase";
 
 import Home from "./components/Home";
@@ -11,6 +11,8 @@ import Register from "./components/Register";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [displayName, setDisplayName] = useState(null);
+  const [userID, setUserID] = useState(null);
 
   useEffect(() => {
     const ref = firebase.database().ref("user");
@@ -20,15 +22,36 @@ function App() {
     });
   }, [user]);
 
+  const registerUser = userName => {
+    firebase.auth().onAuthStateChanged(FBUser => {
+      FBUser.updateProfile({
+        displayName: userName
+      })
+        .then(() => {
+          setUser(FBUser);
+          setDisplayName(FBUser.displayName);
+          setUserID(FBUser.uid);
+        })
+        .catch(error => {
+          error !== null ? console.log(error.message) : console.log("fine");
+        });
+      navigate("/meetings");
+    });
+  };
+
   return (
     <div>
       <Navigation user={user} />
       {user && <Welcome user={user} />}
       <Router>
-        <Home path="/" user={user} />
+        <Home path="/" user={displayName} />
         <Login path="/login" />
         <Meetings path="/meetings" />
-        <Register path="/register" firebase={firebase} />
+        <Register
+          path="/register"
+          firebase={firebase}
+          registerUser={registerUser}
+        />
       </Router>
     </div>
   );
