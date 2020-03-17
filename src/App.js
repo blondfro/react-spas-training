@@ -7,7 +7,7 @@ import Welcome from "./components/Welcome";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Meetings from "./components/Meetings";
-import Register from "./components/Registration";
+import Register from "./components/Register";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -18,7 +18,7 @@ function App() {
       let FBUser = snapshot.val();
       setUser(FBUser);
     });
-  });
+  }, [user]);
 
   return (
     <div>
@@ -28,7 +28,7 @@ function App() {
         <Home path="/" user={user} />
         <Login path="/login" />
         <Meetings path="/meetings" />
-        <Register path="/registration" />
+        <Register path="/register" />
       </Router>
     </div>
   );
