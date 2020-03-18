@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaUndo } from "react-icons/all";
 import AttendeesList from "./AttendeesList";
 
 function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
@@ -36,6 +37,10 @@ function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
     setFilteredAttendees(filtered);
   }, [searchQuery]);
 
+  const resetQuery = () => {
+    setSearchQuery("");
+  };
+
   return (
     <div className="container mt-4">
       <div className="row justify-content-center">
@@ -43,14 +48,25 @@ function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
           <h1 className="font-weight-light text-center">Attendees</h1>
           <div className="card bg-light mb-4">
             <div className="card-body text-center">
-              <input
-                type="text"
-                name="searchQuery"
-                placeholder="Search Attendees"
-                className="form-control"
-                value={searchQuery}
-                onChange={event => setSearchQuery(event.target.value)}
-              />
+              <div className="input-group input-group-lg">
+                <input
+                  type="text"
+                  name="searchQuery"
+                  placeholder="Search Attendees"
+                  className="form-control"
+                  value={searchQuery}
+                  onChange={event => setSearchQuery(event.target.value)}
+                />
+                <div className="input-group-append">
+                  <button
+                    className="btn btn-sm btn-outline-info"
+                    title="Reset Search"
+                    onClick={() => resetQuery()}
+                  >
+                    <FaUndo />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
