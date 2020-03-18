@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaUndo } from "react-icons/all";
+import { FaUndo, FaRandom } from "react-icons/all";
 import AttendeesList from "./AttendeesList";
 
 function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
@@ -39,6 +39,14 @@ function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
 
   const resetQuery = () => {
     setSearchQuery("");
+    setFilteredAttendees(displayAttendees);
+  };
+
+  const chooseRandomUser = () => {
+    const randomAttendee = Math.floor(Math.random() * displayAttendees.length);
+    resetQuery();
+    const filtered = [displayAttendees[randomAttendee]];
+    setFilteredAttendees(filtered);
   };
 
   return (
@@ -64,6 +72,13 @@ function Attendees({ adminUser, firebase, userID, meetingID, ...props }) {
                     onClick={() => resetQuery()}
                   >
                     <FaUndo />
+                  </button>
+                  <button
+                    className="btn btn-sm btn-outline-info"
+                    title="Choose Random user"
+                    onClick={() => chooseRandomUser()}
+                  >
+                    <FaRandom />
                   </button>
                 </div>
               </div>
